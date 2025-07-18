@@ -6,7 +6,7 @@ class InstituicaoServices:
         rows = execute_query(query)
         if rows:
             row = [
-                {"id": r[0], "tipo": r[1], "endereco": r[2], "responsavel": r[3], "cod_identificador": r[4]} for r in rows
+                {"id": r[0], "tipo": r[1], "nome": r[2], "endereco": r[3], "responsavel": r[4], "cod_identificador": r[5]} for r in rows
             ]
             return row
         else:
@@ -15,7 +15,7 @@ class InstituicaoServices:
     @staticmethod
     def create_instituicao_service(params):
         query = """
-            INSERT INTO instituicao (tipo, endereco, nome_respnsavel, identificador) VALUES (%s, %s, %s, %s)
+            INSERT INTO instituicao (tipo, nome, endereco, responsavel, identificador) VALUES (%s, %s, %s, %s, %s)
         """   
         execute_query(query, params)
         
@@ -32,4 +32,4 @@ class InstituicaoServices:
     @staticmethod
     def get_ong_service(params = None):
         if params == None:
-            return InstituicaoServices.__response("SELECT * FROM instituicao WHERE tipo = 'escola'")
+            return InstituicaoServices.__response("SELECT * FROM instituicao WHERE tipo = 'ong'")

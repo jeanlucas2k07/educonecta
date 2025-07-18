@@ -1,8 +1,8 @@
 CREATE TABLE IF NOT EXISTS instituicao (
     id_inst SERIAL PRIMARY KEY,
-    tipo TEXT NOT NULL,
+    tipo TEXT NOT NULL CHECK (tipo IN ("ong", "escola")),
+    nome VARCHAR(100) NOT NULL
     endereco TEXT NOT NULL,
-    nome_respnsAvel TEXT NOT NULL,
-    identificador TEXT UNIQUE NOT NULL
-
+    responsavel TEXT NOT NULL,
+    identificador TEXT UNIQUE NOT NULL,
 )

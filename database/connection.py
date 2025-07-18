@@ -11,6 +11,8 @@ def open_connection():
 
 def execute_query(query, params=None):
     conn = open_connection()
+    conn.set_client_encoding('UTF8')
+    
     try:
         with conn.cursor() as cur:
             cur.execute(query, params)

@@ -1,26 +1,28 @@
-from flask import Flask, request
+from flask import Flask, jsonify
+from flask_cors import CORS
 from database.init_databases import init_databases
 from routes.home import home
 from controllers.instituicoes.instituicao_controller import InstituicaoControllers
-from controllers.user.create_user_contorller import create_user_controller
-from controllers.user.get_user_controller import get_user_controller
+from controllers.user.user_controllers import UserControlls
 
 init_databases()
 
 app = Flask(__name__)
+CORS(app)
+
 
 ## ROTAS GET ##
 
-@app.get("/")
+@app.get("/api/data")
 def home_route():
-    return home()
+    return jsonify({"message": "vasc0"})
 
 @app.get("/instituicoes")
 def get_instituicoes_route():
     return InstituicaoControllers.get_instituicao_controller()
 
 @app.get("/escolas")
-def return_escolas():
+def get_escolas_route():
     return InstituicaoControllers.get_escola_controller()
 
 @app.get("/ong")
@@ -29,7 +31,11 @@ def return_ongs():
 
 @app.get("/users")
 def get_user_route():
-    return get_user_controller()
+    return UserControlls.get_user_controller()
+
+@app.get("/instituicao/<id>")
+def get_instituicao_by_id_route(id):
+    return InstituicaoControllers.get_instituicao_by_id_controller(id)
 
 ## ROTAS POST ##
 
@@ -39,12 +45,19 @@ def create_instituicao_route():
 
 @app.post("/users")
 def create_user_route():
-    return create_user_controller()
+    return UserControlls.create_user_controller()
     
 
 ## ROTAS PUT ##
 
-
 ## ROTAS DELETE ##
+@app.delete("/instituicao/<id>")
+def delete_instituicao_route(id):
+    return InstituicaoControllers.delete_instituicao_controller(id)
 
+@app.delete("users/<id>")
+def delete_user_route(id):
+    return ''
 
+if __name__ == "__main__":
+    app.run()

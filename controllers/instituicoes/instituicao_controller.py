@@ -59,6 +59,30 @@ class InstituicaoControllers:
             return jsonify({"insituições": resp}), 200
         except Exception as e:
             return jsonify({"error": f"erro ao comunicar com o banco de dados: {e}"}), 500
+    
+    @staticmethod
+    def delete_instituicao_controller(id):
+        try:
+            if InstituicaoServices.delete_instituicao_service(id):
+                return jsonify({"message": "deleção feita com sucesso"}), 204
+            
+            else:
+                return jsonify({"error": "id not found"}), 404
+            
+        except Exception as e:
+            return jsonify({"Error": f"erro ao tentar deletar a instiruição: {e}"}), 500
+    
+    @staticmethod
+    def get_instituicao_by_id_controller(id):
+        try:
+            resp = InstituicaoServices.get_instituicao_by_id_service(id)
+            
+            if resp == []:
+                return jsonify({"message": "Não temos nenhuma instituição com este id"}), 200
+            
+            return jsonify({"insituição": resp}), 200
+        except Exception as e:
+            return jsonify({"error": f"erro ao comunicar com o banco de dados: {e}"}), 500
         
     @staticmethod
     def get_escola_controller():

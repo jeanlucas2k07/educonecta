@@ -23,5 +23,6 @@ def execute_query(query, params=None):
                 result = None
             
         return result
+    
     finally:
         conn.close()

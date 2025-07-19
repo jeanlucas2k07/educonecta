@@ -1,4 +1,5 @@
 from utils.validators.cnpj_validator import VerificaCNPJ
+from utils.validators.id_validator import id_validator
 from services.intituicoes.instituicoes_services import InstituicaoServices
 from flask import jsonify, request
 
@@ -62,6 +63,9 @@ class InstituicaoControllers:
     
     @staticmethod
     def delete_instituicao_controller(id):
+        if not id_validator("instituicao", id):
+            return jsonify({"error": "id inexistente"}), 400
+        
         try:
             if InstituicaoServices.delete_instituicao_service(id):
                 return jsonify({"message": "deleção feita com sucesso"}), 204
@@ -74,6 +78,9 @@ class InstituicaoControllers:
     
     @staticmethod
     def get_instituicao_by_id_controller(id):
+        if not id_validator("instituicao", id):
+            return jsonify({"error": "id inexistente"}), 400
+        
         try:
             resp = InstituicaoServices.get_instituicao_by_id_service(id)
             

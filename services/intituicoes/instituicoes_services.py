@@ -41,17 +41,13 @@ class InstituicaoServices:
     @staticmethod
     def delete_instituicao_service(id):
         try:
-            id = int(id)
-            
-        except ValueError:
+            query = "DELETE FROM instituicao WHERE id_inst = %s"
+            execute_query(query, (id,))
+            return True
+        except Exception as e:
+            print(f"error ao deletar usuário {e}")
             return False
-        
-        rows = execute_query("SELECT id_inst FROM instituicao")
-        
-        if rows:
-            ids = [r[0] for r in rows]
-            if id not in ids:
-                return False
-        
-        execute_query("DELETE FROM instituicao WHERE id_inst = %s", (id,))
-        return True
+
+    
+    
+    

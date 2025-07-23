@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConecta - API Docs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+</head>
+
+<body>
+    <header>
+        <a href="/">
+            <img src="{{ url_for('static', filename='assets/images/logos/logo-educonecta.jpg') }}" alt="logo EduConecta">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/docs">API Docs</a></li>
+                <li><a href="#about-us">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="docs">
+        <h1>📚 Documentação da API - EduConecta</h1>
+        <p>Bem-vindo à documentação oficial da nossa API! Aqui estão descritas as principais rotas e como utilizá-las.</p>
+
+        <section>
+            <h2>🔍 Rotas GET</h2>
+            <ul>
+                <li><code>GET /</code> — Página inicial</li>
+                <li><code>GET /instituicao</code> — Lista todas as instituições</li>
+                <li><code>GET /instituicao/&lt;id&gt;</code> — Busca uma instituição pelo ID</li>
+                <li><code>GET /escolas</code> — Lista todas as escolas</li>
+                <li><code>GET /ong</code> — Lista todas as ONGs</li>
+                <li><code>GET /users</code> — Lista todos os usuários</li>
+                <li><code>GET /users/&lt;id&gt;</code> — Busca um usuário pelo ID</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>📝 Rotas POST</h2>
+            <ul>
+                <li><code>POST /instituicao</code> — Cadastra uma nova instituição <br>
+                    <strong>Body JSON:</strong>
+<pre>{
+  "tipo": "ong ou escola",
+  "endereco": "string",
+  "responsavel": "string",
+  "identificador": "cnpj ou inep"
+}</pre>
+                </li>
+                <li><code>POST /users</code> — Cadastra um novo usuário <br>
+                    <strong>Body JSON:</strong>
+<pre>{
+  "name": "string",
+  "email": "string",
+  "password": "string"
+}</pre>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>✏️ Rotas PUT</h2>
+            <ul>
+                <li><code>PUT /users/&lt;id&gt;</code> — Atualiza dados do usuário <br>
+                    <strong>Body JSON:</strong>
+<pre>{
+  "column": "name ou email ou password",
+  "update": "novo valor"
+}</pre>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🗑️ Rotas DELETE</h2>
+            <ul>
+                <li><code>DELETE /instituicao/&lt;id&gt;</code> — Remove uma instituição</li>
+                <li><code>DELETE /users/&lt;id&gt;</code> — Remove um usuário</li>
+                <li><code>DELETE /instituicao</code> — Remove todas as instituições <br>
+                    <strong>Body JSON:</strong>
+<pre>{
+  "password": "senha do admin"
+}</pre>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>ℹ️ Observações</h2>
+            <p>• Todas as respostas são em JSON.<br>
+               • Para rotas que exigem dados, envie o JSON no body.<br>
+               • Use ferramentas como <strong>Postman</strong> ou <strong>Insomnia</strong> para testar facilmente.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 EduConecta. Todos os direitos reservados.
+    </footer>
+</body>
+
+</html>

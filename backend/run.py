@@ -7,7 +7,7 @@ CORS(app)
 
 @app.get("/")
 def home_route():
-    return render_template('index.html')
+    return render_template('docs.html')
 
 if __name__ == "__main__":
     app.run()

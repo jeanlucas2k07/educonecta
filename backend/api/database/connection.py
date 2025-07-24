@@ -5,6 +5,7 @@ from api.database import ip_validator
 
 load_dotenv()
 
+
 try:
     if ip_validator() == "IPv4":
         DATABASE_URL = os.getenv("DATABASE_URL_IPV4")
@@ -14,7 +15,6 @@ try:
 except Exception:
     print("error: ", Exception)
 
-DATABASE_URL = os.getenv("DATABASE_URL")
 
 def open_connection():
     return psycopg2.connect(DATABASE_URL)

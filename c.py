@@ -2,7 +2,6 @@ import ipaddress
 import socket
 
 def ip_validator() -> str | None:
-    try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(("8.8.8.8", 80))
         ip_local = s.getsockname()[0]
@@ -14,5 +13,5 @@ def ip_validator() -> str | None:
         elif isinstance(ip, ipaddress.IPv6Address):
             return "IPv6"
         
-    except Exception:
-        return "inválido"
+    
+print(ip_validator())

@@ -146,5 +146,3 @@ Você pode:
 
 
 ---
-
-Se quiser, posso até gerar o arquivo `.md` pronto pra você copiar e colar! Quer? 🚀

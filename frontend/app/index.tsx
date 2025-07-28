@@ -15,7 +15,7 @@ export default function Index() {
         // Background Linear Gradient
         colors={['#1E7200', '#81FA54']}
         start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: 1 }}
+        end={{ x: 0, y: 1 }}
         style={StyleSheet.absoluteFill}
       />
 

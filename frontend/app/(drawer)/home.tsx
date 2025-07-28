@@ -1,7 +1,8 @@
-import { View, SafeAreaView, StyleSheet, ScrollView, Text, TextInput } from "react-native";
+import { View, SafeAreaView, StyleSheet, ScrollView, Text, TextInput, TouchableOpacity } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient"
 import React, { useState, useEffect } from "react";
+import { useRouter } from "expo-router";
 import Header from "@/components/header/Header";
 import Card from "@/components/cards/Card";
 import api from "@/src/sevices/Api";
@@ -15,6 +16,17 @@ interface Instituicao {
 
 const HomePage = () => {
   const [instituicoes, setInstituicoes] = useState<Instituicao[]>([])
+  const router = useRouter()
+
+  const goToInstuicao = (id: number) => {
+    router.push({
+      pathname: "/instituicao",
+      params: {
+        id: id
+      }
+    })
+  }
+  
 
   async function getInstituicoes() {
     try {
@@ -41,6 +53,11 @@ const HomePage = () => {
           style={StyleSheet.absoluteFill}
         />
 
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+
+        >
+
         <TextInput style={styles.searchBar} placeholder="Pesquise uma escola, ong ou trabalho social"></TextInput>
         
 
@@ -61,16 +78,15 @@ const HomePage = () => {
         </View>
 
         <View>
-            <Text style={{color: "#ffff", fontWeight: "600", fontSize: 16, elevation: 3}}>Instituiçoes Cadastradas:</Text>
-            <ScrollView>
+            <Text style={{color: "#ffff", fontWeight: "600", fontSize: 16, elevation: 5, marginBlockEnd: 16}}>Instituiçoes Cadastradas:</Text>
               {instituicoes.map((item) => (
-                <View key={item.id} style={{ padding: 10, backgroundColor: 'white', marginVertical: 5, borderRadius: 5 }}>
+                <TouchableOpacity key={item.id} style={styles.insts} onPress={() => goToInstuicao(item.id)}>
                   <Text>Nome: {item.nome}</Text>
                   <Text>Tipo: {item.tipo}</Text>
-                </View>
+                </TouchableOpacity>
               ))}
-            </ScrollView>
         </View>
+        </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -80,16 +96,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 15,
-    paddingVertical: 50,
+    paddingBlockEnd: 50,
     backgroundColor: "#007C25"
   },
   scrollContainer: {
     position: 'relative',
-    marginBottom: 50
+    marginBottom: 16
   },
   searchBar: {
     paddingHorizontal: 15,
-    marginBlockEnd:50,
+    marginBlock:50,
     backgroundColor: 'white',
     elevation: 5,
     borderRadius: 5,
@@ -97,7 +113,8 @@ const styles = StyleSheet.create({
   row: {
     gap: 5,
     marginBlock: 16
-  }
+  },
+  insts: { padding: 10, backgroundColor: 'white', marginVertical: 5, borderRadius: 5 }
 });
 
 export default HomePage;

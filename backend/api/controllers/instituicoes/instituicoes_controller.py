@@ -15,6 +15,9 @@ class InstituicaoControllers:
         endereco = data.get("endereco")
         responsavel = data.get("responsavel")
         identificador = data.get("identificador")
+        descricao = data.get("descricao")
+        image = data.get("image")
+
         
         if not tipo:
             return jsonify({'error': "O tipo é obrigatório"}), 400
@@ -35,12 +38,18 @@ class InstituicaoControllers:
         if not responsavel:
             return jsonify({"error": "O nome do responsável é obrigatório"}), 400
         
+        if not descricao:
+            return jsonify({"error": "O nome do Descricao é obrigatório"}), 400
+        
+        if not image:
+            return jsonify({"error": "O nome do image é obrigatório"}), 400
+        
         
         if tipo.lower() == 'ong':
             if not VerificaCNPJ(identificador):
                 return jsonify({"error": "CNPJ inválido"}), 400
             
-        params = (tipo, nome, endereco, responsavel, identificador)
+        params = (tipo, nome, endereco, responsavel, identificador, descricao, image)
         
         try:
             InstituicaoServices.create_instituicao_service(params)

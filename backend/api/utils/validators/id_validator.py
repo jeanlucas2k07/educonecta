@@ -2,7 +2,7 @@ from api.database.connection import execute_query
 
 def id_validator(table: str, id: int):
     try:
-        query = f"SELECT id FROM {table} WHERE id = %s"
+        query = f"SELECT id_inst FROM {table} WHERE id_inst = %s"
         result = execute_query(query, (id,))
         
         return bool(result)

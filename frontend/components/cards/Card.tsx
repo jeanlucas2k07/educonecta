@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground, ImageSourcePropType } from "react-native";
+import { Text, StyleSheet, ImageBackground, ImageSourcePropType, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 // Interface das props
@@ -28,7 +28,7 @@ const Card = ({ title, text, image }: CardProps) => {
 
   // Se não existe imagem: fundo cinza
   return (
-    <View style={[styles.card, { backgroundColor: '#777' }]}>
+    <TouchableOpacity style={[styles.card, { backgroundColor: '#777' }]}>
       <LinearGradient
         colors={["rgba(0,0,0,0.6)", "transparent"]}
         start={{ x: 0, y: 1 }}
@@ -37,7 +37,7 @@ const Card = ({ title, text, image }: CardProps) => {
       />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.text}>{text}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

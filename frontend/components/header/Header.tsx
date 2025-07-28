@@ -1,18 +1,18 @@
-import { View, Text, Image, Pressable, StyleSheet } from "react-native"
+import { View, Text, Image, Pressable, StyleSheet, TouchableOpacity } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
 
 const Header = () => {
     return (
         <View style={styles.header}>
-            <Pressable>
+            <TouchableOpacity>
                 <Ionicons name="menu" size={24} color={"#1E7200"}/>
-            </Pressable>
+            </TouchableOpacity>
 
             <Image source={require("@/assets/images/logo.png") } style={styles.image}></Image>
 
-            <Pressable>
+            <TouchableOpacity>
                 <Ionicons name="person" size={24} color={"#1E7200"}/>
-            </Pressable>
+            </TouchableOpacity>
 
         </View>
     )

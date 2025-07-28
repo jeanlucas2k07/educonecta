@@ -4,5 +4,7 @@ CREATE TABLE IF NOT EXISTS instituicao (
     nome VARCHAR(100) NOT NULL,
     endereco TEXT NOT NULL,
     responsavel TEXT NOT NULL,
-    identificador TEXT UNIQUE NOT NULL
+    identificador TEXT UNIQUE NOT NULL,
+    descricao VARCHAR(300),
+    image TEXT NOT NULL
 )

@@ -43,7 +43,6 @@ const HomePage = () => {
 
   return (
     <SafeAreaProvider>
-        <Header/>
         <SafeAreaView style={styles.container}>
           <LinearGradient
           // Background Linear Gradient

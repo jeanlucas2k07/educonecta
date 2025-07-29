@@ -1,10 +1,12 @@
-import { View, Text, Image, Pressable, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native"
+import { useNavigation, DrawerActions, DrawerStatus } from "@react-navigation/native";
 import { Ionicons } from '@expo/vector-icons';
 
 const Header = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.header}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer()) }>
                 <Ionicons name="menu" size={24} color={"#1E7200"}/>
             </TouchableOpacity>
 

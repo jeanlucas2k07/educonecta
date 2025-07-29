@@ -25,7 +25,7 @@ export default function Index() {
           <Image source={require("@/assets/images/logo.png")} style={styles.logo}/>
         </View>
 
-        <Button onPress={() => {router.push("/home")}} text="Entrar" style={styles.button} textStyle={styles.textStyle}/>
+        <Button onPress={() => {router.push("/(drawer)/pages/home")}} text="Entrar" style={styles.button} textStyle={styles.textStyle}/>
 
 
       </SafeAreaView>
